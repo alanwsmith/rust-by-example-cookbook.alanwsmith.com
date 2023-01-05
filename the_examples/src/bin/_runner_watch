@@ -1,0 +1,3 @@
+#!/bin/bash
+
+fswatch -0 --event Updated ./*.rs | xargs -0 -I{} basename {} ".rs" | xargs -I{} cargo run --bin {}
