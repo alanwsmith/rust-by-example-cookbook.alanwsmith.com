@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# # This works
+# fswatch --event Updated -e ".*" -i "\.rs$" -0 . \
+#   | xargs -0 -I{} basename {} ".rs" \
+#   | xargs -I{}  cargo run --bin {}
+
+fswatch --event Updated -e ".*" -i "\.rs$" -0 . \
+  | xargs -0 -I{} basename {} ".rs" \
+  | xargs -I{} sh -c \
+  'export RUNFILE="{}" && clear && cargo run --bin $RUNFILE'
+
